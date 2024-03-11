@@ -32,14 +32,12 @@ export default function SignIn() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    AxiosInstance.post(`/`,  {
-      email: data.get('email'),
+    AxiosInstance.post(`/login`, {
+      username: data.get('username'),
       password: data.get('password'),
-    })
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
+    }).then((response) => {
+      console.log(response.data);
+    }).catch((error) => console.log(error));
   };
 
   return (
@@ -62,7 +60,7 @@ export default function SignIn() {
               fullWidth
               id="email"
               label="Email Address"
-              name="email"
+              name="username"
               autoComplete="email"
               autoFocus
             />
