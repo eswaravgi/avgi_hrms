@@ -52,7 +52,7 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <img src='https://storm.saleswarp.com/v4_14_test/img/sw-loginLogo.png' width={250} height={100} />
+          <img src='https://www.avgisolutions.com/uploads/site_images/36e04a6090d38fd612a7e93c1692a02c.png' width={100} height={100} />
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
