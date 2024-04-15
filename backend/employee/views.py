@@ -10,10 +10,10 @@ class EmployeeView(generics.ListCreateAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
-    def post(self, request):
-        serializer = self.get_serializer(data=request.data)
-        if not serializer.is_valid(raise_exception=False):
-            return response.Response({'Message':"Sorry, can't create user with these details, user already exists.", 'status_code': status.HTTP_406_NOT_ACCEPTABLE, 'Errors': serializer.errors})
+    # def post(self, request):
+    #     serializer = self.get_serializer(data=request.data)
+    #     if not serializer.is_valid(raise_exception=False):
+    #         return response.Response({'Message':"Sorry, can't create user with these details, user already exists.", 'status_code': status.HTTP_406_NOT_ACCEPTABLE, 'Errors': serializer.errors})
         
     # def perform_create(self, serializer):
     #     # Generate a random password limited to 10 characters
