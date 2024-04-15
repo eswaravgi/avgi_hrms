@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Company!</title>
+    <style>
+        /* Define your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #164472;
+        }
+        .company-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* .black-text {
+            color: #000000;
+        } */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="company-logo">
+            <img src="https://www.avgisolutions.com/uploads/site_images/36e04a6090d38fd612a7e93c1692a02c.png" alt="Company Logo" width="100">
+            <h1>Welcome to Our AVGI HRMS (Testing)</h1>
+        </div>
+        <!-- <p>Hello <strong class="black-text">{{ employee.name }}</strong>,</p> -->
+        <p>Hello <strong>{{ employee.name }}</strong>,</p>
+        <p>We are delighted to welcome you to our team. Your account has been created successfully.</p>
+        <p>Below are your account details:</p>
+        <ul style="list-style: none; padding-left: 0;">
+            <li><strong>Name:</strong> {{ employee.name }}</li>
+            <li><strong>Email:</strong> {{ employee.email }}</li>
+            <li><strong>Password:</strong> {{ employee.password }}</li>
+        </ul>
+        <p>Please keep this information secure.</p>
+        <a href="https://eswaravgi.github.io/samplelogin/" class="button" style="color: #ffffff;">Login to Your Account</a>
+        <p>If you have any questions or need assistance, feel free to contact us.</p>
+        <p>Best regards,<br>The AVGI HRMS Team</p>
+    </div>
+</body>
+</html>

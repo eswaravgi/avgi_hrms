@@ -1,0 +1,16 @@
+Welcome to Our Company!
+
+Hello {employee_name},
+
+We are delighted to welcome you to our team. Your account has been created successfully.
+
+Below are your account details:
+
+Name: {employee_name}
+Email: {employee_email}
+Password: {employee_password}
+
+Please keep this information secure.
+
+Best regards,
+The HRMS Testing
