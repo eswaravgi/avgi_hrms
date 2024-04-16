@@ -10,6 +10,8 @@ import Home from "./pages/home/Home"
 import Employees from "./pages/employees/Employees";
 import Login from "./pages/login/Login";
 import "./styles/global.scss";
+import Leaves from "./pages/leaves/Leaves";
+import Departments from "./pages/departments/Departments";
 
 function App() {
   const Layout = () => {
@@ -46,6 +48,14 @@ function App() {
           path: "/employees",
           element: <Employees />
         },
+        {
+          path: "/leaves",
+          element: <Leaves />
+        },
+        {
+          path: "/departments",
+          element: <Departments />
+        }
       ]
     },
   ]);

@@ -1,7 +1,7 @@
-import "./employees.scss";
+import "./leaves.scss";
 import DataTable from "../../components/dataTable/dataTable";
 import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-import { userRows } from "../../data";
+import { leaveRows } from "../../data";
 import { useState } from "react";
 import Add from "../../components/add/Add";
 
@@ -26,26 +26,25 @@ const columns: GridColDef[] = [
         `${params.row.firstName || ''} ${params.row.lastName || ''}`,
       type: 'string',
     },
-    { field: 'email', headerName: 'Email', width: 150, editable: true, type: 'string' },
-    { field: 'dateOfBirth', headerName: 'Date of Birth', width: 100, editable: true, type: 'string' },
-    { field: 'designation', headerName: 'Designation', width: 150, editable: true, type: 'string' },
-    { field: 'reportingTo', headerName: 'Reporting To', width: 100, editable: true, type: 'string' },
-    {field: 'phone', headerName: 'Phone', width: 100, type: 'number'},
+    { field: 'leaveType', headerName: 'Leave Type', width: 150, editable: true, type: 'string' },
+    { field: 'fromDate', headerName: 'From', width: 150, editable: true, type: 'string' },
+    { field: 'toDate', headerName: 'To', width: 150, editable: true, type: 'string' },
+    { field: 'reason', headerName: 'Reasons', width: 150, editable: true, type: 'string' },
     { field: 'status', headerName: 'Status', width: 100, type: 'boolean' },
 ];
 
-const Employees = () => {
+const Leaves = () => {
   const [open, setOpen] = useState(false);
     return (
-        <div className="userClass">
+        <div className="leaveClass">
             <div className="info">
-                <h1>Employees</h1>
-                <button onClick={() => setOpen(true)}>Add New Employee</button>
+                <h1>Leaves</h1>
+                <button onClick={() => setOpen(true)}>Add Leave</button>
             </div>
-            <DataTable columns={columns} rows={userRows} currentPage="employees"/>
-            {open && <Add currentPage="employees" columns={columns} setOpen={setOpen}/>}
+            <DataTable columns={columns} rows={leaveRows} currentPage="leaves"/>
+            {open && <Add currentPage="leaves" columns={columns} setOpen={setOpen}/>}
         </div>
     )
 }
 
-export default Employees;
+export default Leaves;
