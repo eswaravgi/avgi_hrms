@@ -22,6 +22,6 @@ urlpatterns = [
     path('employee/', include('employee.urls')),
     path('attendance/', include('attendance.urls')),
     path('ticket/', include('ticket.urls')),
-    path('trail/', include('trail.urls')),
-    path('', include('login.urls')),
+    # path('trail/', include('trail.urls')),
+    path('auth/', include('login.urls')),
 ]

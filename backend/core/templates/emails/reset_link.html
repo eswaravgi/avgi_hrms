@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Our Company!</title>
+    <title>Password Reset Request</title>
     <style>
         /* Define your CSS styles here */
         body {
@@ -52,20 +52,13 @@
     <div class="container">
         <div class="company-logo">
             <img src="https://www.avgisolutions.com/uploads/site_images/36e04a6090d38fd612a7e93c1692a02c.png" alt="Company Logo" width="100">
-            <h1>Welcome to Our AVGI HRMS (Testing)</h1>
+            <h1>Password Reset Request (Testing)</h1>
         </div>
         <p>Hello <strong>{{ employee.first_name }}</strong>,</p>
-        <p>We are delighted to welcome you to our team. Your account has been created successfully.</p>
-        <p>Below are your account details:</p>
-        <ul style="list-style: none; padding-left: 0;">
-            <li><strong>Name:</strong> {{ employee.first_name }} {{ employee.last_name }}</li>
-            <li><strong>Email:</strong> {{ employee.company_mail }}</li>
-            <li><strong>Password:</strong> {{ employee.password }}</li>
-        </ul>
 
-        </ul>
-        <p>Please keep this information secure.</p>
-        <a href="https://eswaravgi.github.io/samplelogin/" class="button" style="color: #ffffff;">Login to Your Account</a>
+        <p>We received a request to reset your password. If you did not make this request, you can ignore this email.</p>
+        <p>To reset your password, click on the following link:</p>
+        <a href="{{ reset_url }}" class="button" style="color: #ffffff;">Reset Password</a>
         <p>If you have any questions or need assistance, feel free to contact us.</p>
         <p>Best regards,<br>The AVGI HRMS Team</p>
     </div>

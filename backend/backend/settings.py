@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from datetime import timedelta
 
-PWD = 'Eswar@avgi'
+# PWD = 'Eswar@avgi'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,18 +43,19 @@ INSTALLED_APPS = [
 ]
 
 ADDED_APPS = ['rest_framework',
+              'rest_framework_simplejwt',
+              'rest_framework_simplejwt.token_blacklist',
               'corsheaders',
+              'login',
               'employee',
               'attendance',
               'ticket',
-              'trail',
-            #   'login',
+            #   'trail',
               ]
 
 INSTALLED_APPS += ADDED_APPS
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -71,7 +74,6 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'core', 'templates')],
-        # 'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,16 +141,23 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'login.CustomUser'
 
 REST_FRAMEWORK = {
-    'DATETIME_FORMAT' : '%d-%m-%Y %H:%M:%S',
-    'DATE_FORMAT' : '%d-%m-%Y',
-    'TIME_FORMAT' : '%H:%M:%S',
+    'DATETIME_FORMAT': '%d-%m-%Y %H:%M:%S',
+    'DATE_FORMAT': '%d-%m-%Y',
+    'TIME_FORMAT': '%H:%M:%S',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
 }
 
-# EMAIL_HOST_USER = 'spiritual.voices786@gmail.com'
-# EMAIL_HOST_PASSWORD = 'cgsoztmktoyrgnyh'
-# Email Integrations
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+}
+
+REFRESH_TOKEN_LIFETIME = timedelta(days=1)
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

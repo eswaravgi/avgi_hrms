@@ -1,4 +1,5 @@
 from django.db import models
+from login.models import CustomUser
 
 class Department(models.Model):
     department = models.CharField(max_length=100, unique=True)
@@ -26,12 +27,27 @@ class Employee(models.Model):
     designation = models.CharField(max_length=100, blank=False, null=False)
     reporting_to = models.CharField(max_length=100, blank=True, null=True,)    
     personal_mail = models.EmailField(max_length=100, blank=False, null=False, unique=True)
-    company_mail = models.EmailField(max_length=100, blank=False, null=False, unique=True)
+    company_mail = models.EmailField(max_length=100, blank=False, null=False)
     password = models.CharField(max_length=30, blank=True)
     emp_id = models.CharField(max_length=15, blank=False, null=False, unique=True)
     address = models.TextField(max_length=500, blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
+
+
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
+
+    # Override save method to ensure synchronization with CustomUser
+    def save(self, *args, **kwargs):
+        # If there's no associated CustomUser instance, create one
+        if not self.user:
+            self.user = CustomUser.objects.create_user(email=self.company_mail, password=self.password)
+        else:
+            # Update email and password of associated CustomUser instance
+            self.user.email = self.company_mail
+            self.user.set_password(self.password)
+            self.user.save()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
