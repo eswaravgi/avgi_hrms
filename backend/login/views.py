@@ -11,7 +11,10 @@ from rest_framework.exceptions import ValidationError
 from django.core.mail import send_mail
 from .models import CustomUser
 from employee.models import Employee
-from .serializers import UserLoginSerializer, UserLogoutSerializer, PasswordResetSerializer, PasswordResetRequestSerializer
+from .serializers import UserLoginSerializer, UserLogoutSerializer, PasswordResetSerializer, PasswordResetRequestSerializer, AccessTokenSerializer
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
+from backend.settings import SIMPLE_JWT
 import random
 import string
 
@@ -23,12 +26,16 @@ class UserLoginAPIView(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
+        authenticated = serializer.validated_data["authenticated"]
 
         # Generate JWT tokens
         refresh = RefreshToken.for_user(user)
         return Response({
             "refresh": str(refresh),
             "access": str(refresh.access_token),
+            "token_expiry": SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"],
+            "authenticated" : authenticated,
+            "status_code" : status.HTTP_200_OK,
         }, status=status.HTTP_200_OK)
 
 
@@ -63,15 +70,18 @@ class PasswordResetRequestAPIView(generics.GenericAPIView):
                     html_message=html_message,
                     fail_silently=False,
                 )
-                return Response({'message': 'Password reset link sent successfully'}, status=status.HTTP_200_OK)
+                return Response({'message': 'Password reset link sent successfully', "status_code" : status.HTTP_200_OK}, status=status.HTTP_200_OK)
             except Exception as e:
                 return Response({'error': f"Error sending password reset email: {e}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
-            return Response({'error': 'User with this email does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'User with this email does not exist', "status_code" : status.HTTP_400_BAD_REQUEST}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserLogoutAPIView(generics.GenericAPIView):
     serializer_class = UserLogoutSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def post (self,request):
         try:
             refresh_token =request.data.get('refresh')
@@ -105,6 +115,23 @@ class PasswordResetConfirmAPIView(generics.GenericAPIView):
             # Update the user's password
             user.set_password(serializer.validated_data['new_password'])
             user.save()
-            return Response({'message': 'Password reset successfully'}, status=status.HTTP_200_OK)
+            return Response({'message': 'Password reset successfully', "status_code" : status.HTTP_200_OK}, status=status.HTTP_200_OK)
         else:
-            return Response({'error': 'Invalid reset link'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Invalid reset link', "status_code" : status.HTTP_400_BAD_REQUEST}, status=status.HTTP_400_BAD_REQUEST)
+        
+class AccessTokenAPIView(generics.GenericAPIView):
+    serializer_class = AccessTokenSerializer
+    def post(self, request):
+        refresh_token = request.data.get('refresh_token')
+
+        if refresh_token:
+            try:
+                refresh = RefreshToken(refresh_token)
+                access_token = str(refresh.access_token)
+                return Response({'access_token': access_token,
+                                 "token_expiry": SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"],
+                                 "status_code" : status.HTTP_200_OK}, status=status.HTTP_200_OK)
+            except Exception as e:
+                return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({'error': 'Refresh token is missing', "status_code" : status.HTTP_400_BAD_REQUEST}, status=status.HTTP_400_BAD_REQUEST)

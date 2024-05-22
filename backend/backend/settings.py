@@ -13,7 +13,6 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
-# PWD = 'Eswar@avgi'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -153,10 +152,9 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME' : timedelta(days=1),
 }
-
-REFRESH_TOKEN_LIFETIME = timedelta(days=1)
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -14,6 +14,7 @@ class UserLoginSerializer(serializers.Serializer):
             user = authenticate(email=email, password=password)
             if user:
                 data["user"] = user
+                data["authenticated"] = 1
             else:
                 raise serializers.ValidationError("Incorrect email or password")
         else:
@@ -44,3 +45,6 @@ class PasswordResetSerializer(serializers.Serializer):
     def validate(self, data):
         # Perform any custom validation here if needed
         return data
+    
+class AccessTokenSerializer(serializers.Serializer):
+    refresh_token = serializers.CharField(max_length=500)
