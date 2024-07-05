@@ -8,7 +8,7 @@ from django.contrib.auth.hashers import make_password
 from django.template.loader import render_to_string
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.exceptions import ValidationError
-from django.core.mail import send_mail
+from core.utils import send_html_email
 from .models import CustomUser
 from employee.models import Employee
 from .serializers import UserLoginSerializer, UserLogoutSerializer, PasswordResetSerializer, PasswordResetRequestSerializer, AccessTokenSerializer
@@ -58,18 +58,15 @@ class PasswordResetRequestAPIView(generics.GenericAPIView):
 
             # Compose email subject and message
             subject = "Password Reset Request (Test Mail)"
-            html_message = render_to_string('emails/reset_link.html', {'reset_url': reset_url, 'employee': employee})
+            # html_message = render_to_string('emails/reset_link.html', {'employee': employee, 'reset_url': reset_url})
+            template_name = 'emails/reset_link.html'
+            context = {'employee': employee, 'reset_url': reset_url}
+            recipient_list = [employee.company_mail]
+
 
             # Send email to user
             try:
-                send_mail(
-                    subject=subject,
-                    message='',  # No need for a message since we're sending HTML
-                    from_email=None,  # Use default sender from settings.py
-                    recipient_list=[email],
-                    html_message=html_message,
-                    fail_silently=False,
-                )
+                send_html_email(subject, recipient_list=recipient_list, context=context, template_name=template_name, plain_message={})
                 return Response({'message': 'Password reset link sent successfully', "status_code" : status.HTTP_200_OK}, status=status.HTTP_200_OK)
             except Exception as e:
                 return Response({'error': f"Error sending password reset email: {e}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
