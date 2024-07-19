@@ -1,13 +1,34 @@
 import { Link } from "react-router-dom";
 import "./dataTable.scss"
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+// import { useState ,useEffect} from "react";
+// import AxiosInstance from "../axios";
 
 type Props = {
     columns: GridColDef[];
     rows: object[];
     currentPage: string;
+    actions :string
+    apiroute : string
 }
 const dataTable = (props: Props) => {
+    // const [rows, setRows] = useState([]);
+    
+
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
+
+    // const fetchData = async () => {
+    //     try {
+    //         const response = await AxiosInstance.get(`${props.apiroute}`);
+    //         setRows(response.data); 
+    //         console.log("succesfully")   
+    //     } catch (error) {
+    //         console.log(error);  
+        
+    //     } 
+    // };
     const handleDelete = (id:number) => {
             // Delete actions
             // axios.delete('/api/${currentPage}/id')
@@ -53,7 +74,7 @@ const dataTable = (props: Props) => {
             pageSizeOptions={[5]}
             checkboxSelection
             disableRowSelectionOnClick
-            disableColumnFilter
+            // disableColumnFilter
             disableColumnSelector
             disableDensitySelector
             />

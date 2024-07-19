@@ -24,3 +24,18 @@
         }
     }
 }
+.base-Popper-root{
+    position: relative;
+    display: block;
+      .MuiDataGrid-panelWrapper{
+          background-color: transparent; 
+          position: absolute;
+          top: -120px;
+          left: 310px;
+          // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 5px;
+          margin-top: 5px;
+      
+       
+  }
+  }
