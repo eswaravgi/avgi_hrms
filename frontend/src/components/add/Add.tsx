@@ -17,7 +17,7 @@ const Add = (props: Props) => {
         event.preventDefault();
 		try {
 			const response = await AxiosInstance.post(`${props.apiroute}`, user);
-			console.log(response)
+
             setUser(response.data)
 			props.setOpen(false)
             window.location.reload()
@@ -46,7 +46,7 @@ const Add = (props: Props) => {
                     .map((column) => (
                         <div className="item" key={column.field}>
                             <label>{column.headerName}</label>
-                            <input type={column.type} placeholder={column.field} 
+                            <input name={column.field} type={column.type} placeholder={column.field} 
                             onChange={handleInputChange}/>
                         </div>
                     ))}

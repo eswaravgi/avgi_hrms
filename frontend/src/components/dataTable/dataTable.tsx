@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./dataTable.scss"
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import AxiosInstance from "../axios";
 // import { useState ,useEffect} from "react";
 // import AxiosInstance from "../axios";
 
@@ -29,10 +30,15 @@ const dataTable = (props: Props) => {
         
     //     } 
     // };
-    const handleDelete = (id:number) => {
-            // Delete actions
-            // axios.delete('/api/${currentPage}/id')
-            console.log(id + " Deleted");
+    const handleDelete =async (id:number) => {
+    try {
+        await AxiosInstance.delete(`${props.actions}/${id}`)
+        console.log(`${id} Deleted`);
+        window.location.reload()
+    } catch (error) {
+        console.log("Error", error);
+    }
+            
     }
     const actionColumn: GridColDef = {
         field: "actions",
