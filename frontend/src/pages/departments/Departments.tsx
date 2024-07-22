@@ -1,7 +1,6 @@
 import "./departments.scss";
 import DataTable from "../../components/dataTable/dataTable";
 import { GridColDef } from "@mui/x-data-grid";
-// import { departmentRows } from "../../data";
 import { useState, useEffect } from "react";
 import Add from "../../components/add/Add";
 import AxiosInstance from "../../components/axios";
