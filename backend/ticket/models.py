@@ -1,6 +1,7 @@
 from django.db import models
 from employee.models import Employee
 
+
 class Ticket(models.Model):
     STATUS_CHOICES = (
         ('open', 'Open'),
@@ -13,7 +14,7 @@ class Ticket(models.Model):
         ('high', 'High'),
     )
 
-    emp_id = models.ForeignKey(Employee, on_delete=models.DO_NOTHING, blank=False, null=True, default=None)
+    employee_db_id = models.ForeignKey(Employee, on_delete=models.DO_NOTHING, blank=False, null=True, default=None)
     ticket_details = models.TextField(blank=False, null=False)
     priority = models.CharField(choices=PRIORITY_CHOICES, max_length=10, blank=False, null=True, default=None)
     status = models.CharField(choices=STATUS_CHOICES, max_length=10, blank=False, null=True, default=None)

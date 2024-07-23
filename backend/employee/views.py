@@ -17,14 +17,19 @@ class EmployeeView(generics.ListCreateAPIView):
 
         # Prepare email message
         subject = 'AVGI HRMS (Test Mail)'
-        html_message = render_to_string('emails/greetings_email.html', {'employee': instance})
+        # html_message = render_to_string('emails/greetings_email.html', {'employee': instance})
+        plain_message = ""
+        template_name = 'emails/greetings_email.html'
+        context = {'employee': instance}
+        recipient_list = [instance.personal_mail]
 
         # Send email to the new employee's email address
-        recipient_list = [instance.personal_mail]
-        if send_html_email(subject, html_message, recipient_list):
-            return Response({'message': 'Email sent successfully'}, status=status.HTTP_201_CREATED)
+        if send_html_email(subject, plain_message, template_name, context, recipient_list):
+                    # print("Email sent successfully")
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
-            return Response({'message': 'Failed to send email'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            # print("Failed to send email")
+            return Response({"error": "Failed to send email"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class DepartmentView(generics.ListCreateAPIView):

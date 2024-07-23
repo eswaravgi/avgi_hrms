@@ -2,29 +2,29 @@ from django.db import models
 from employee.models import Employee
 
 class Attendance(models.Model):
-    emp_id = models.ForeignKey(Employee, on_delete=models.DO_NOTHING, blank=False, null=True, default=None)
+    employee_db_id = models.ForeignKey(Employee, on_delete=models.DO_NOTHING, blank=False, null=True, default=None)
     attendance_date = models.DateField(blank=False, null=False)
     clock_in_time = models.DateTimeField(blank=True, null=True)
     clock_out_time = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     
-
     def __str__(self):
         return self.attendance_date.strftime("%d-%m-%Y")
 
     class Meta:
         db_table = "Attendance"
 
+
 class LeaveType(models.Model):
     leave_type = models.CharField(max_length=100, unique=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    
 
     def __str__(self):
         return self.leave_type
     
     class Meta:
         db_table = "Leave Type"
+
 
 class LeaveRequest(models.Model):
 
@@ -34,7 +34,7 @@ class LeaveRequest(models.Model):
         ('rejected', 'Rejected'),
     )
 
-    emp_id = models.ForeignKey(Employee, on_delete=models.DO_NOTHING, blank=False, null=True, default=None)
+    employee_db_id = models.ForeignKey(Employee, on_delete=models.DO_NOTHING, blank=False, null=True, default=None)
     leave_type = models.ForeignKey(LeaveType, on_delete = models.DO_NOTHING, blank=False, null=True)
     start_date = models.DateField(blank=False, null=False)
     end_date = models.DateField(blank=False, null=False)
@@ -42,12 +42,12 @@ class LeaveRequest(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
 
-
     def __str__(self):
         return self.leave_type.leave_type
     
     class Meta:
         db_table = "LeaveRequests"
+
 
 class Holiday(models.Model):
     holiday_date = models.DateField(blank=False, null=False)

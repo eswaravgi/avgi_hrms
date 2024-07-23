@@ -13,7 +13,6 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
-# PWD = 'Eswar@avgi'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,6 +50,8 @@ ADDED_APPS = ['rest_framework',
               'attendance',
               'ticket',
             #   'trail',
+              'payslip',
+              'asset',
               ]
 
 INSTALLED_APPS += ADDED_APPS
@@ -135,6 +136,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT =  BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -153,10 +157,9 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME' : timedelta(days=1),
 }
-
-REFRESH_TOKEN_LIFETIME = timedelta(days=1)
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

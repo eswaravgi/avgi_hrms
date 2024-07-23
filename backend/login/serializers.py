@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import authenticate
 from .models import CustomUser
 
+
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField()
@@ -14,12 +15,14 @@ class UserLoginSerializer(serializers.Serializer):
             user = authenticate(email=email, password=password)
             if user:
                 data["user"] = user
+                data["authenticated"] = 1
             else:
                 raise serializers.ValidationError("Incorrect email or password")
         else:
             raise serializers.ValidationError("Must provide both email and password")
 
         return data
+
 
 class PasswordResetRequestSerializer(serializers.Serializer):
     email = serializers.EmailField()
@@ -38,9 +41,14 @@ class PasswordResetRequestSerializer(serializers.Serializer):
 class UserLogoutSerializer(serializers.Serializer):
     refresh = serializers.CharField()
 
+
 class PasswordResetSerializer(serializers.Serializer):
     new_password = serializers.CharField(max_length=128)
 
     def validate(self, data):
         # Perform any custom validation here if needed
         return data
+   
+    
+class AccessTokenSerializer(serializers.Serializer):
+    refresh_token = serializers.CharField(max_length=500)

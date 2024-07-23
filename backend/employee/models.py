@@ -1,6 +1,7 @@
 from django.db import models
 from login.models import CustomUser
 
+
 class Department(models.Model):
     department = models.CharField(max_length=100, unique=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
@@ -11,7 +12,9 @@ class Department(models.Model):
     class Meta:
         db_table = "Departments"
 
+
 class Employee(models.Model):
+    
     GENDER_CHOICES = (
         ('male','Male'),
         ('female','Female'),
@@ -29,7 +32,7 @@ class Employee(models.Model):
     personal_mail = models.EmailField(max_length=100, blank=False, null=False, unique=True)
     company_mail = models.EmailField(max_length=100, blank=False, null=False)
     password = models.CharField(max_length=30, blank=True)
-    emp_id = models.CharField(max_length=15, blank=False, null=False, unique=True)
+    employee_id = models.CharField(max_length=15, blank=False, null=False, unique=True)
     address = models.TextField(max_length=500, blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
@@ -50,7 +53,7 @@ class Employee(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.first_name + ' ' + self.last_name
+        return self.first_name + ' ' + self.last_name  + ' ' + f"({self.employee_id})"
         
     class Meta:
         db_table = "Employees"
