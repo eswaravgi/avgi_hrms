@@ -22,6 +22,12 @@ export const menu = [
                 icon: "user.svg",
             },
             {
+                id: 7,
+                title: "Attendance",
+                url: "/attendance",
+                icon: "",
+            },
+            {
                 id: 2,
                 title: "Leaves",
                 url: "/leaves",
@@ -34,17 +40,23 @@ export const menu = [
                 icon: "post.svg",
             },
             {
-                id: 4,
+              id:4,
+              title:"Holidays",
+              url: "/holidays",
+              icon:"calendar.svg"
+            },
+            {
+                id: 5,
                 title: "Clients",
                 url: "/",
                 icon: "",
             },
             {
-                id: 5,
+                id: 6,
                 title: "Projects",
                 url: "/",
                 icon: "",
-            },
+              },
         ],
     },
     {
@@ -59,8 +71,8 @@ export const menu = [
             },
             {
                 id: 2,
-                title: "Payroll",
-                url: "/",
+                title: "Payslip",
+                url: "/payslip",
                 icon: "note.svg",
             },
             {
@@ -73,8 +85,21 @@ export const menu = [
                 id: 4,
                 title: "Accounting",
                 url: "/",
-                icon: "calender.svg",
+                icon: "calendar.svg",
             },
+            {
+              id :5,
+              title: "Assets",
+              url: "/assets",
+              icon: "asset.svg",
+            },
+            {
+              id :6,
+              title:"Assets Info",
+              url:"/assetinfo",
+              icon:"assetim.svg",
+            }
+
         ],
     },
     {

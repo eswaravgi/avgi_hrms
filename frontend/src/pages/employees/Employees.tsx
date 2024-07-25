@@ -35,7 +35,7 @@ const columns: GridColDef[] = [
     { field: 'reporting_to', headerName: 'Reporting To', width: 150, editable: false, type: 'string' },
     { field: 'personal_mail', headerName: 'Personal Mail', width: 200, editable: false, type: 'string' },
     { field: 'company_mail', headerName: 'Company Mail', width: 200, editable: false, type: 'string' },
-    { field: 'emp_id', headerName: 'Employee ID', width: 100, editable: false, type: 'string' },
+    { field: 'employee_id', headerName: 'Employee ID', width: 100, editable: false, type: 'string' },
     { field: 'address', headerName: 'Address', width: 200, editable: false, type: 'string' },
     { field: 'contact_number', headerName: 'Contact Number', width: 150, editable: false, type: 'string' },
     { field: 'status', headerName: 'Status', width: 100, type: 'string' },

@@ -32,7 +32,7 @@ const dataTable = (props: Props) => {
     // };
     const handleDelete =async (id:number) => {
     try {
-        await AxiosInstance.delete(`${props.actions}/${id}`)
+        await AxiosInstance.delete(`${props.actions}/${id}/`)
         console.log(`${id} Deleted`);
         window.location.reload()
     } catch (error) {
@@ -40,6 +40,7 @@ const dataTable = (props: Props) => {
     }
             
     }
+
     const actionColumn: GridColDef = {
         field: "actions",
         headerName: "Actions",
