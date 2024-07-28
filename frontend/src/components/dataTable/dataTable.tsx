@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import "./dataTable.scss"
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import AxiosInstance from "../axios";
-// import { useState ,useEffect} from "react";
-// import AxiosInstance from "../axios";
 
 type Props = {
     columns: GridColDef[];
@@ -13,23 +11,6 @@ type Props = {
     apiroute : string
 }
 const dataTable = (props: Props) => {
-    // const [rows, setRows] = useState([]);
-    
-
-    // useEffect(() => {
-    //     fetchData();
-    // }, []);
-
-    // const fetchData = async () => {
-    //     try {
-    //         const response = await AxiosInstance.get(`${props.apiroute}`);
-    //         setRows(response.data); 
-    //         console.log("succesfully")   
-    //     } catch (error) {
-    //         console.log(error);  
-        
-    //     } 
-    // };
     const handleDelete =async (id:number) => {
     try {
         await AxiosInstance.delete(`${props.actions}/${id}/`)
@@ -38,7 +19,7 @@ const dataTable = (props: Props) => {
     } catch (error) {
         console.log("Error", error);
     }
-            
+ 
     }
 
     const actionColumn: GridColDef = {
@@ -81,7 +62,6 @@ const dataTable = (props: Props) => {
             pageSizeOptions={[5]}
             checkboxSelection
             disableRowSelectionOnClick
-            // disableColumnFilter
             disableColumnSelector
             disableDensitySelector
             />
