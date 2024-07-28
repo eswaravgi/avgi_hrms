@@ -12,6 +12,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AxiosInstance from '../../components/axios';
 import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 
 function Copyright(props: any) {
   return (
@@ -31,6 +32,7 @@ const defaultTheme = createTheme();
 
 export default function SignIn() {
   const navigatePage = useNavigate();
+  const [, setIsLoggedin] = useState(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -39,12 +41,12 @@ export default function SignIn() {
       email: data.get('username'),
       password: data.get('password'),
     }).then((response) => {
-      console.log(response.data);
       if (response.data.status == 400) {
-        return alert("Invalid details");
+        return alert("Invalid credentials");
       } else {
         localStorage.setItem("refreshToken", response.data.refresh);
         localStorage.setItem("accessToken", response.data.access);
+        setIsLoggedin(true);
         navigatePage('/home');
       }
     }).catch((error) => console.log(error));
