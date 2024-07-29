@@ -38,7 +38,7 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     AxiosInstance.post(`/auth/login/`, {
-      email: data.get('username'),
+      email: data.get('email'),
       password: data.get('password'),
     }).then((response) => {
       if (response.data.status == 400) {
@@ -73,7 +73,7 @@ export default function SignIn() {
               fullWidth
               id="email"
               label="Email Address"
-              name="username"
+              name="email"
               autoComplete="email"
               autoFocus
             />

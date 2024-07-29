@@ -1,18 +1,27 @@
 import { Link } from "react-router-dom";
 import "./dataTable.scss"
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import AxiosInstance from "../axios";
 
 type Props = {
     columns: GridColDef[];
     rows: object[];
     currentPage: string;
+    actions :string
+    apiroute : string
 }
 const dataTable = (props: Props) => {
-    const handleDelete = (id:number) => {
-            // Delete actions
-            // axios.delete('/api/${currentPage}/id')
-            console.log(id + " Deleted");
+    const handleDelete =async (id:number) => {
+    try {
+        await AxiosInstance.delete(`${props.actions}/${id}/`)
+        console.log(`${id} Deleted`);
+        window.location.reload()
+    } catch (error) {
+        console.log("Error", error);
     }
+ 
+    }
+
     const actionColumn: GridColDef = {
         field: "actions",
         headerName: "Actions",
@@ -53,7 +62,6 @@ const dataTable = (props: Props) => {
             pageSizeOptions={[5]}
             checkboxSelection
             disableRowSelectionOnClick
-            disableColumnFilter
             disableColumnSelector
             disableDensitySelector
             />
