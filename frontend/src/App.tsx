@@ -12,6 +12,12 @@ import Login from "./pages/login/Login";
 import "./styles/global.scss";
 import Leaves from "./pages/leaves/Leaves";
 import Departments from "./pages/departments/Departments";
+import Assets from "./pages/assets/Assets";
+import AssetInfo from "./pages/assetinfo/AssetInfo";
+import Holidays from "./pages/holidays/Holidays";
+import PaySlip from "./pages/payslip/Payslip";
+import Attendance from "./pages/attendance/Attendance";
+import Policy from "./pages/policy/Policy";
 
 function App() {
   const Layout = () => {
@@ -33,7 +39,7 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/login",
+      path: "/",
       element: <Login />,
     },
     {
@@ -49,12 +55,36 @@ function App() {
           element: <Employees />
         },
         {
+          path:"/attendance",
+          element:<Attendance/>
+        },
+        {
           path: "/leaves",
           element: <Leaves />
         },
         {
           path: "/departments",
           element: <Departments />
+        },
+        {
+          path: "/holidays",
+          element: <Holidays/>
+        },
+        {
+          path: "/payslip",
+          element: <PaySlip/>
+        },
+        {
+          path:"/policy",
+          element:<Policy/>
+        },
+        {
+          path: "/assets",
+          element:<Assets/>
+        },
+        {
+          path:"/assetinfo",
+          element:<AssetInfo/>
         }
       ]
     },

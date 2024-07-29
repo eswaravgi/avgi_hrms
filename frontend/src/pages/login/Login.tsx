@@ -11,6 +11,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AxiosInstance from '../../components/axios';
+import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 
 function Copyright(props: any) {
   return (
@@ -29,14 +31,24 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  const navigatePage = useNavigate();
+  const [, setIsLoggedin] = useState(false);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    AxiosInstance.post(`/login`, {
-      username: data.get('username'),
+    AxiosInstance.post(`/auth/login/`, {
+      email: data.get('email'),
       password: data.get('password'),
     }).then((response) => {
-      console.log(response.data);
+      if (response.data.status == 400) {
+        return alert("Invalid credentials");
+      } else {
+        localStorage.setItem("refreshToken", response.data.refresh);
+        localStorage.setItem("accessToken", response.data.access);
+        setIsLoggedin(true);
+        navigatePage('/home');
+      }
     }).catch((error) => console.log(error));
   };
 
@@ -53,6 +65,7 @@ export default function SignIn() {
           }}
         >
           <img src='https://www.avgisolutions.com/uploads/site_images/36e04a6090d38fd612a7e93c1692a02c.png' width={100} height={100} />
+          <span id = "errorMessage" />
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -60,7 +73,7 @@ export default function SignIn() {
               fullWidth
               id="email"
               label="Email Address"
-              name="username"
+              name="email"
               autoComplete="email"
               autoFocus
             />
