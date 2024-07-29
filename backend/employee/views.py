@@ -45,3 +45,8 @@ class EmployeeOperation(generics.RetrieveUpdateDestroyAPIView):
 class DepartmentOperation(generics.RetrieveUpdateDestroyAPIView):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
+
+
+class CustomEmployeeListView(generics.ListAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = CustomEmployeeSerializer

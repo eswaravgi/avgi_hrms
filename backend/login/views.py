@@ -30,7 +30,13 @@ class UserLoginAPIView(generics.GenericAPIView):
 
         # Generate JWT tokens
         refresh = RefreshToken.for_user(user)
+
+        user_data = {
+            "user" : user.email,
+        }
+
         return Response({
+            "user_data" : user_data,
             "refresh": str(refresh),
             "access": str(refresh.access_token),
             "token_expiry": SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"],

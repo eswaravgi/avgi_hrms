@@ -28,6 +28,7 @@ urlpatterns = [
     path('auth/', include('login.urls')),
     path('payslip/', include('payslip.urls')),
     path('asset/', include('asset.urls')),
+    path('report/', include('report.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

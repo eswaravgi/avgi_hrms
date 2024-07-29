@@ -8,14 +8,14 @@ class AttendanceView(generics.ListCreateAPIView):
     queryset = Attendance.objects.all()
     serializer_class = AttendanceSerializer
 
-class LeaveTypeView(generics.ListCreateAPIView):
-    queryset = LeaveType.objects.all()
-    serializer_class = LeavetypeSerializer
+# class LeaveTypeView(generics.ListCreateAPIView):
+#     queryset = LeaveType.objects.all()
+#     serializer_class = LeavetypeSerializer
 
-    def post(self, request):
-        serializer = self.get_serializer(data=request.data)
-        if not serializer.is_valid(raise_exception=False):
-            return response.Response({'Message':"This leave type already exists.", 'status_code': status.HTTP_406_NOT_ACCEPTABLE, 'Errors': serializer.errors})
+#     def post(self, request):
+#         serializer = self.get_serializer(data=request.data)
+#         if not serializer.is_valid(raise_exception=False):
+#             return response.Response({'Message':"This leave type already exists.", 'status_code': status.HTTP_406_NOT_ACCEPTABLE, 'Errors': serializer.errors})
     
 class LeaveRequestView(generics.ListCreateAPIView):
     queryset = LeaveRequest.objects.all()
@@ -30,9 +30,9 @@ class AttendanceOperation(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AttendanceSerializer
 
 
-class LeavetypeOperation(generics.RetrieveUpdateDestroyAPIView):
-    queryset = LeaveType.objects.all()
-    serializer_class = LeavetypeSerializer
+# class LeavetypeOperation(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = LeaveType.objects.all()
+#     serializer_class = LeavetypeSerializer
 
 class LeaveRequestOperation(generics.RetrieveUpdateDestroyAPIView):
     queryset = LeaveRequest.objects.all()

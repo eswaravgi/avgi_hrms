@@ -52,6 +52,7 @@ ADDED_APPS = ['rest_framework',
             #   'trail',
               'payslip',
               'asset',
+              'report',
               ]
 
 INSTALLED_APPS += ADDED_APPS

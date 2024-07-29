@@ -28,3 +28,15 @@ class EmployeeSerializer(serializers.ModelSerializer):
     #     if request and request.method == 'GET':
     #         data['password'] = instance.password
     #     return data
+
+
+class CustomEmployeeSerializer(serializers.ModelSerializer):
+    empDetails = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Employee
+        fields = ['employee_id', 'empDetails']
+
+    def get_empDetails(self, obj):
+        # Customize the format of empDetails
+        return f"{obj.first_name} {obj.last_name} ({obj.employee_id})"
