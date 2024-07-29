@@ -25,7 +25,7 @@ export const menu = [
                 id: 7,
                 title: "Attendance",
                 url: "/attendance",
-                icon: "",
+                icon: "calendar.svg",
             },
             {
                 id: 2,
@@ -37,26 +37,14 @@ export const menu = [
                 id: 3,
                 title: "Departments",
                 url: "/departments",
-                icon: "post.svg",
+                icon: "element.svg",
             },
             {
               id:4,
               title:"Holidays",
               url: "/holidays",
               icon:"calendar.svg"
-            },
-            {
-                id: 5,
-                title: "Clients",
-                url: "/",
-                icon: "",
-            },
-            {
-                id: 6,
-                title: "Projects",
-                url: "/",
-                icon: "",
-              },
+            }
         ],
     },
     {
@@ -64,86 +52,32 @@ export const menu = [
         title: "HR",
         listItems: [
             {
-                id: 1,
-                title: "Sales",
-                url: "/",
-                icon: "element.svg",
-            },
-            {
                 id: 2,
                 title: "Payslip",
                 url: "/payslip",
                 icon: "note.svg",
             },
             {
-                id: 3,
-                title: "Reports",
-                url: "/",
-                icon: "form.svg",
-            },
-            {
-                id: 4,
-                title: "Accounting",
-                url: "/",
-                icon: "calendar.svg",
-            },
-            {
               id :5,
               title: "Assets",
               url: "/assets",
-              icon: "asset.svg",
+              icon: "log.svg",
             },
             {
               id :6,
               title:"Assets Info",
               url:"/assetinfo",
-              icon:"assetim.svg",
+              icon:"post.svg",
             },
             {
               id: 7,
               title:"Policy",
               url:"/policy",
-              icon:""
+              icon:"form.svg"
             }
 
         ],
-    },
-    {
-        id: 4,
-        title: "MAINTANENCE",
-        listItems: [
-            {
-                id: 1,
-                title: "Settings",
-                url: "/",
-                icon: "setting.svg",
-            },
-            {
-                id: 2,
-                title: "Expenses",
-                url: "/",
-                icon: "backup.svg",
-            },
-        ],
-    },
-    {
-        id: 5,
-        title: "PERFORMANCE",
-        listItems: [
-            {
-                id: 1,
-                title: "Goals",
-                url: "/",
-                icon: "chart.svg",
-            },
-            {
-                id: 2,
-                title: "Employee Performance",
-                url: "/",
-                icon: "log.svg",
-            },
-        ],
-    },
+    }
 ];
 
 export const userRows = [

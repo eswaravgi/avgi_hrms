@@ -92,6 +92,7 @@ const Add = (props: Props) => {
                     name={column.field}
                     type={column.type}
                     placeholder={column.headerName}
+                    autoComplete="off"
                     onChange={handleInputChange}
                   />
                 )}
