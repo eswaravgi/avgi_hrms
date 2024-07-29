@@ -1,34 +1,3 @@
-// .userClass{
-//     .info {
-//         display: flex;
-//         align-items: center;
-//         gap: 20px;
-//         margin-bottom: 20px;
-
-//         button {
-//             border: 1px solid gray;
-//             border-radius: 5px;
-//             background-color: white;
-//             height: 40px;
-//             padding: 7px;
-//             cursor: pointer;
-//         }      
-//     }
-
-//     .filter{
-//         border: 1px solid gray;
-//         border-radius: 5px;
-//         background-color: white;
-//         height: 40px;
-//         padding: 5px;
-
-//         cursor: pointer;
-    
-//     }
-// }
-
-
-
 
 @import "../../styles/variables.scss";
 
@@ -59,51 +28,39 @@
     }
 
     .addDiv {
-        // width: 100vw;
-        // height: 100vh;
-        // position: absolute;
-        // top: 0;
-        // left: 0;
-        // background-color: rgba(0, 0, 0, 0.724);
-        // display: flex;
-        // align-items: center;
-        // justify-content: center;
+    
         overflow-y: scroll;
-        
-        
+         
         .modal {
             padding: 50px;
             border-radius: 10px;
             background-color: $main-bg;
             position: relative;
             top :125px;
-            margin-top: 95px;
-            // top: 0;
-            
+            margin-top: 95px;      
             h1 {
                 margin-bottom: 40px;
                 font-size: 24px;
                 color: $soft-color;
-                position: sticky;
+                
             }
 
             .close {
-                border: 1px solid $soft-color ;
-                background-color: white;
-                color: rgb(243, 12, 12);
-                border-radius: 50px;
-                height: 25px;
-                width: 25px;
-                text-align: center;
-                font-size: 12px;
-                font-weight:lighter;
-                padding: 3px;
                 position: absolute;
                 top: 10px;
                 right: 20px;
                 cursor: pointer;
+                border: 1px solid $soft-color ;
+                border-radius: 50px;
+                background-color: white;
+                color: black;
+                height: 25px;
+                width: 25px;
+                text-align: center;
+                font-size: 12px;
+                font-weight:bold;
+                padding: 3px;
             }
-
             form {
                 display: flex;
                 flex-wrap: wrap;

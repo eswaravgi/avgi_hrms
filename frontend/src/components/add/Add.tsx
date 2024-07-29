@@ -92,7 +92,7 @@ const Add = (props: Props) => {
                   <input
                     name={column.field}
                     type={column.type}
-                    placeholder={column.field}
+                    placeholder={column.headerName}
                     onChange={handleInputChange}
                   />
                 )}

@@ -98,6 +98,12 @@ export const menu = [
               title:"Assets Info",
               url:"/assetinfo",
               icon:"assetim.svg",
+            },
+            {
+              id: 7,
+              title:"Policy",
+              url:"/policy",
+              icon:""
             }
 
         ],

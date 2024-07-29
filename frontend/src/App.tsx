@@ -17,6 +17,7 @@ import AssetInfo from "./pages/assetinfo/AssetInfo";
 import Holidays from "./pages/holidays/Holidays";
 import PaySlip from "./pages/payslip/Payslip";
 import Attendance from "./pages/attendance/Attendance";
+import Policy from "./pages/policy/Policy";
 
 function App() {
   const Layout = () => {
@@ -72,6 +73,10 @@ function App() {
         {
           path: "/payslip",
           element: <PaySlip/>
+        },
+        {
+          path:"/policy",
+          element:<Policy/>
         },
         {
           path: "/assets",

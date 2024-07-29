@@ -14,8 +14,6 @@ const columns:GridColDef[]=[
     {field:"notes",headerName:"Notes",width:200, editable:true,type:"string"},
 ]
 
-
-
 const Assets= () => {
     const [open, setOpen] = useState(false);
     const [AssetRows,SetAssetRows] = useState([])
@@ -31,7 +29,6 @@ const Assets= () => {
             console.error("Error fetching data:", error);
         }
     }
-
 
   return (
     <div className="assetclass">
